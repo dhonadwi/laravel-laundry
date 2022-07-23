@@ -1,0 +1,24 @@
+update
+items->tersedia
+
+create
+transaction
+	user_id
+	nik
+	name
+	departemen
+	tanggal
+	
+
+create
+transaction_detail
+	transaction_id
+	nama_barang
+	lokasi
+	kuantiti
+	tambahan satuan
+	keterangan
+
+
+instal haruncpi 
+composer require haruncpi/laravel-id-generator
