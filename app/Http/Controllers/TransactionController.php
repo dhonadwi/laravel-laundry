@@ -7,6 +7,7 @@ use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Psy\Readline\Transient;
 
 class TransactionController extends Controller
 {
@@ -17,6 +18,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
+        $transaction = Transaction::with('details')->get();
+        return $transaction;
         $transactions = Transaction::all();
 
         return view('pages.daftar-transaksi', [
