@@ -9,7 +9,7 @@
                 <select id="nama_paket_{{ $value }}" class="form-control nama_paket" name="package_name[]" onchange="searchItem({{ $value }})" required>
                     <option value="" selected disabled>Pilih</option>
                     @foreach ($packages as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        <option value="{{ $item->id.','.$item->name }}">{{ $item->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -17,10 +17,10 @@
                 <input type="number" name="package_price[]" id="package_price{{ $value }}" class="form-control" readonly>
             </div>
             <div class="col-2">
-                <input type="number" id="berat{{ $value }}" class="form-control" placeholder="Berat (KG)" onkeyup="hitung({{ $value }})" required>
+                <input type="number" id="berat{{ $value }}" name="berat[]" class="form-control" placeholder="Berat (KG)" onkeyup="hitung({{ $value }})" required value="0" step=".1" >
             </div>
             <div class="col-2">
-                <input type="number" id="jumlah{{ $value }}" name="jumlah" class="form-control"  value="" required
+                <input type="number" id="jumlah{{ $value }}" name="jumlah[]" class="form-control jumlah"  value="0" required
                 placeholder="Jumlah" readonly
                 >
             </div>
@@ -51,22 +51,42 @@
         document.querySelector(`#description${idItem}`).value = dataItem.data.description
         // document.querySelector(`#tersedia${idBarang}`).value = dataItem.item.tersedia
         // document.querySelector(`#satuan${idBarang}`).value = dataItem.item.satuan
-        
-        document.querySelector(`#total`).value = 123
-        console.log(dataItem);
+
+        hitung(idItem)
+        // console.log(dataItem);
     }
 
     function searchItem(idItem)
     {
         const options = document.querySelector(`#nama_paket_${idItem}`).value;
-        // const id = options.split("_")
-        getPackage(idItem,options);
+        const id = options.split(",")
+        console.log(id);
+        getPackage(idItem,id[0]);
         // console.log(options);
     }
 
     function hitung(idItem) 
     {
-        let price = document.querySelector('#package_price')
+        let price = document.querySelector(`#package_price${idItem}`)
+        let berat = document.querySelector(`#berat${idItem}`)
+        let jumlah = document.querySelector(`#jumlah${idItem}`)
+        let allJumlah = document.querySelectorAll('.jumlah')
+        let total =  document.querySelector(`#total`);
+
+        // console.log(price.value);
+        // console.log(berat.value);
+        
+        let hasil = parseInt(price.value) * berat.value;
+        jumlah.value = hasil
+
+        let berapa = 0;
+        allJumlah.forEach(el => {
+            berapa += parseInt(el.value) 
+            // console.log(el.value)
+            // total.value = berapa
+        });
+        // console.log(berapa)
+        total.value = berapa
     }
 </script>
     

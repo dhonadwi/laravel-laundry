@@ -18,7 +18,7 @@ class Transaction extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->code_transaction = IdGenerator::generate([
+            $model->code = IdGenerator::generate([
                 'table' => 'transactions',
                 'field' => 'code',
                 'length' => 11,

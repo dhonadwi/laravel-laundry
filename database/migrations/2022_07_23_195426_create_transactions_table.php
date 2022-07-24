@@ -19,7 +19,6 @@ class CreateTransactionsTable extends Migration
             $table->string('name');
             $table->string('hp');
             $table->string('address');
-            $table->string('description');
             $table->integer('total');
             $table->dateTime('finish_date')->nullable();
             $table->dateTime('pick_up_date')->nullable();

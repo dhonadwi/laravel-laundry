@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Package as RequestsPackage;
+use App\Http\Requests\TransactionRequest;
 use App\Models\Package;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,7 @@ class PackageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestsPackage $request)
+    public function store(Request $request)
     {
         $data = $request->all();
 
@@ -87,7 +88,7 @@ class PackageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RequestsPackage $request, $id)
+    public function update(Request $request, $id)
     {
         $package = Package::find($id);
         $data = $request->all();

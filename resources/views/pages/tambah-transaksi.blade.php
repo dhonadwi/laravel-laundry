@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+ @if (session()->has('message'))
+        <div class="alert alert-success">
+        {{ session('message') }}
+        </div>
+    @endif
+    @if($errors->any())
+        <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        </div>
+    @endif
     <div class="card">
         <h5>Tambah Transaksi</h5>
             <div class="card-body">
@@ -21,7 +35,7 @@
                     </div>
                     <div class="form-group col-6">
                         <label for="nik">Total Harga</label>
-                        <input type="text" name="total" id="total" required readonly class="form-control">
+                        <input type="text" name="total" id="total" required readonly class="form-control" value="0">
                     </div>
                 </div>
                 <hr class="sidebar-divider">
