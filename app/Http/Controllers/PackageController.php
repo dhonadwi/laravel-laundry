@@ -57,7 +57,12 @@ class PackageController extends Controller
      */
     public function show($id)
     {
-        //
+        $package_id = $id;
+        $package = Package::find($package_id);
+        if ($package) {
+            return response()->json(['status' => 'true', 'message' => 'Data Found', 'data' => $package], 200);
+        }
+        return response()->json(['status' => 'false', 'message' => 'Data Not Found'], 404);
     }
 
     /**

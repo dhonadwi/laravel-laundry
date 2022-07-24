@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\PackageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user/{nik}', [UserController::class, 'show'])->name('cek-user');
 Route::get('/item/{id}', [ItemController::class, 'show'])->name('cek-item');
 // Route::get('/user', [UserController::class, 'index'])->name('cek-user');
+
+Route::group(['prefix' => 'v1'], function () {
+    Route::get('/paket/{id}', [PackageController::class, 'show'])->name('cek-paket');
+});
