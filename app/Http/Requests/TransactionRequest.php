@@ -25,14 +25,16 @@ class TransactionRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'hp' => 'required',
+            'hp' => 'required'|'min:10'|'max:13',
             'address' => 'required',
             'total' => 'required',
+            'bayar' => 'required',
+            'selisih' => 'required',
             'package_name' => 'required',
             'package_price' => 'required',
             'berat' => 'required',
             'jumlah' => 'required',
-            'description' => 'required',
+            'description' => 'required'|'min:10',
         ];
     }
 }

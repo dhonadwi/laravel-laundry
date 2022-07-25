@@ -8,6 +8,7 @@ use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Psy\Readline\Transient;
+use Illuminate\Support\Facades\Crypt;
 
 class TransactionController extends Controller
 {
@@ -18,9 +19,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::with('details')->get();
-        return $transaction;
-        $transactions = Transaction::all();
+        // $transactions = Transaction::with('details')->get();
+        $transactions = Transaction::orderBy('created_at', 'DESC')->get();
+        // return $transactions;
 
         return view('pages.daftar-transaksi', [
             'transactions' => $transactions
@@ -92,7 +93,15 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        //
+         $id_transaction = Crypt::decrypt($id);
+        $transaction = Transaction::with('details')
+            ->where('id', $id_transaction)
+            ->first();
+        
+        // return $transaction;
+        return view('pages.detail-transaksi',[
+            'transaction' => $transaction
+        ]);
     }
 
     /**

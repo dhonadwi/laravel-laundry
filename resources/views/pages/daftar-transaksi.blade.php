@@ -31,28 +31,33 @@
                             <th>Nama</th>
                             <th>No HP</th>
                             <th>Alamat</th>
+                            <th>Tanggal Cuci</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                 <tbody>
-                    {{-- @foreach ($items as $item)
+                    @foreach ($transactions as $item)
+                    @php
+                    $encrypted = Crypt::encrypt($item->id);
+                    @endphp
                         <tr>
                             <td>{{ $item->code }}</td>
                             <td>{{ $item->name }}</td>
-                            <td>{{ $item->description }}</td>
-                            <td>{{ $item->price }}</td>
+                            <td>{{ $item->hp }}</td>
+                            <td>{{ $item->address }}</td>
+                            <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y H:i:s') }}</td>
                             <td>
                                 <div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Aksi
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{{ route('edit-paket',$item->id) }}">Edit</a>
+                                        <a class="dropdown-item" href="{{ route('detail-transaksi',$encrypted) }}">Detail</a>
                                     </div>
                                 </div>
                             </td>
                         </tr>                  
-                    @endforeach  --}}
+                    @endforeach 
                 </tbody>
                 </table>
             </div>
@@ -66,7 +71,7 @@
     <script>
         $(document).ready(function () {
         $("#dataTableBarang").DataTable({
-        ordering: true,
+        ordering: false,
     });
 });
     </script>

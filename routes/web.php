@@ -29,6 +29,13 @@ Route::post('/paket/tambah', [PackageController::class, 'store'])->name('simpan-
 Route::get('/transaksi', [TransactionController::class, 'index'])->name('transaksi');
 Route::get('/transaksi/tambah', [TransactionController::class, 'create'])->name('tambah-transaksi');
 Route::post('/transaksi/tambah', [TransactionController::class, 'store'])->name('simpan-transaksi');
+Route::get('/transaksi/{id}', [TransactionController::class, 'show'])->name('detail-transaksi');
+
+Route::get('/laporan', [TransactionController::class, 'update'])->name('laporan-keuangan');
+
+
+
+
 
 Route::get('/barang', [ItemController::class, 'index'])->name('data-barang');
 Route::get('/permintaan', [ItemController::class, 'create'])->name('request-barang');

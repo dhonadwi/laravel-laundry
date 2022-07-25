@@ -20,7 +20,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->string('package_id');
             $table->string('package_name');
             $table->integer('package_price');
-            $table->integer('berat');
+            $table->decimal('berat',2,1);
             $table->integer('jumlah');
             $table->string('description');
             $table->timestamps();

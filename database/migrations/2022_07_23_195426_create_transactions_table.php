@@ -20,6 +20,8 @@ class CreateTransactionsTable extends Migration
             $table->string('hp');
             $table->string('address');
             $table->integer('total');
+            $table->integer('bayar');
+            $table->integer('selisih');
             $table->dateTime('finish_date')->nullable();
             $table->dateTime('pick_up_date')->nullable();
             $table->timestamps();

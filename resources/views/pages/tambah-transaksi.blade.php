@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group col-6">
                         <label for="nik">Total Harga</label>
-                        <input type="text" name="total" id="total" required readonly class="form-control" value="0">
+                        <input type="text" name="total" id="total" required readonly class="form-control" value="@rupiah(0)">
                     </div>
                 </div>
                 <hr class="sidebar-divider">
@@ -56,9 +56,17 @@
                         </div>
                     </div>
                 </div>
-                 <a class="btn btn-success" href="#" data-toggle="modal" data-target="#transaksiModal">
-                    Simpan
-                </a>
+                <div class="row mt-5">
+                    <div class="form-group col-6">
+                        {{-- <label for="nik">Total Bayar</label> --}}
+                        <input type="text" name="bayar" class="form-control" required placeholder="Total Bayar">
+                    </div>
+                    <div class="form-group col-6">
+                        <a class="btn btn-success form-control" href="#" data-toggle="modal" data-target="#transaksiModal">
+                            Simpan
+                        </a>
+                    </div>
+                </div>
                     @livewire('modal', [
                         'params' => [
                             'name' => 'transaksiModal',
